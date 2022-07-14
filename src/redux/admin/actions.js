@@ -24,11 +24,14 @@ export const getUsers = () => async (dispatch) => {
       });
       return;
     }
-    const res = await axios.get("http://localhost:5000/admin/users", {
-      headers: {
-        Authorization: `Bearer ${decrypted.token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://mern-social-app-2022.herokuapp.com/admin/users",
+      {
+        headers: {
+          Authorization: `Bearer ${decrypted.token}`,
+        },
+      }
+    );
     dispatch({
       type: GET_USERS,
       payload: res.data,

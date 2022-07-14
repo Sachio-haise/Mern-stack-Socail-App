@@ -34,7 +34,7 @@ function Comment({ comment, post }) {
     formData.append("target_user", comment.user_id._id);
     formData.append("comment", reply);
     const res = await axios.post(
-      "http://localhost:5000/comment-post/" + id,
+      "https://mern-social-app-2022.herokuapp.com/comment-post/" + id,
       formData,
       {
         headers: {
@@ -55,11 +55,14 @@ function Comment({ comment, post }) {
       return;
     }
     setWait(true);
-    const res = await axios.get("http://localhost:5000/comment-delete/" + id, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://mern-social-app-2022.herokuapp.com/comment-delete/" + id,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     setTimeout(() => {
       setWait(false);
     }, [1000]);
@@ -85,11 +88,14 @@ function Comment({ comment, post }) {
       setLikeCount(likeCount + 1);
     }
 
-    const res = await axios.get("http://localhost:5000/comment-like/" + id, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://mern-social-app-2022.herokuapp.com/comment-like/" + id,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     setTimeout(() => setlikeLoading(false), 1000);
     dispatch(getPostsOnly());
     console.log(res.data);
@@ -100,7 +106,7 @@ function Comment({ comment, post }) {
     const formData = new FormData();
     formData.append("comment", reply);
     const res = await axios.post(
-      "http://localhost:5000/comment-edit/" + comment._id,
+      "https://mern-social-app-2022.herokuapp.com/comment-edit/" + comment._id,
       formData,
       {
         headers: {

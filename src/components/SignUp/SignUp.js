@@ -25,12 +25,18 @@ function SignUp() {
       formData.append("email", email);
       formData.append("password", password);
 
-      res = await axios.post("http://localhost:5000/sign-up", formData);
+      res = await axios.post(
+        "https://mern-social-app-2022.herokuapp.com/sign-up",
+        formData
+      );
     } else {
       formData.append("email", email);
       formData.append("password", password);
 
-      res = await axios.post("http://localhost:5000/sign-in", formData);
+      res = await axios.post(
+        "https://mern-social-app-2022.herokuapp.com/sign-in",
+        formData
+      );
     }
     if (res.data.errors) {
       setErrors(res.data.errors);

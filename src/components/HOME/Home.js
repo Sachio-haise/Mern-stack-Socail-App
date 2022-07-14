@@ -79,11 +79,14 @@ function Home() {
     }
     const formData = new FormData();
     formData.append("user_id", auth.user._id);
-    const res = await axios.get("http://localhost:5000/like-post/" + id, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://mern-social-app-2022.herokuapp.com/like-post/" + id,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     await dispatch(getPostsOnly());
 
     setTimeout(() => {
@@ -102,7 +105,7 @@ function Home() {
     formData.append("comment", comment);
     setComment("");
     const res = await axios.post(
-      "http://localhost:5000/comment-post/" + id,
+      "https://mern-social-app-2022.herokuapp.com/comment-post/" + id,
       formData,
       {
         headers: {

@@ -39,11 +39,15 @@ function Profile() {
     const formData = new FormData();
     formData.append("bio", bio);
     formData.append("profile", profile);
-    const res = await axios.post("http://localhost:5000/update-bio", formData, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.post(
+      "https://mern-social-app-2022.herokuapp.com/update-bio",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     setEditLoading(false);
     setEdit(false);
 
@@ -59,7 +63,7 @@ function Profile() {
     formData.append("password", password);
     formData.append("oldPassword", oldPassword);
     const res = await axios.post(
-      "http://localhost:5000/update-profile",
+      "https://mern-social-app-2022.herokuapp.com/update-profile",
       formData,
       {
         headers: {

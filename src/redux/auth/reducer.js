@@ -27,11 +27,15 @@ export const getAuth = () => async (dispatch) => {
     }
     const formData = new FormData();
     formData.append("token", decrypted.token);
-    const res = await axios.post("http://localhost:5000/me", formData, {
-      headers: {
-        Authorization: `Bearer ${decrypted.token}`,
-      },
-    });
+    const res = await axios.post(
+      "https://mern-social-app-2022.herokuapp.com/me",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${decrypted.token}`,
+        },
+      }
+    );
     const { user, token } = res.data;
     if (user) {
       dispatch({

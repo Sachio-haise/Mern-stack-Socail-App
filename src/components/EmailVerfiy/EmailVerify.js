@@ -32,11 +32,15 @@ function EmailVerify() {
     const formData = new FormData();
     formData.append("token", auth.token);
     setLoading(true);
-    const res = await axios.post("http://localhost:5000/resent", formData, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.post(
+      "https://mern-social-app-2022.herokuapp.com/resent",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     const { user, token } = res.data;
     if (user) {
       if (user.email_verify_at != null) {
