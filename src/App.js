@@ -20,17 +20,17 @@ function App() {
           <Siderbar />
 
           <Routes>
-            <Route path="/" element={<Home />} exact />
-            <Route path="/verify/:token" element={<EmailVerify />} exact />
-            <Route path="/user-profile" element={<Profile />} exact />
-            <Route path="/reset-password" element={<PasswordReset />} exact />
-            <Route path="/verified/:token" element={<Verified />} exact />
+            <Route path="/" element={<Home />} />
+            <Route path="/verify/:token" element={<EmailVerify />} />
+            <Route path="/user-profile" element={<Profile />} />
+            <Route path="/reset-password" element={<PasswordReset />} />
+            <Route path="/verified/:token" element={<Verified />} />
             <Route element={<HasAuth />}>
-              <Route path="/auth" element={<SignUp />} exact />
+              <Route path="/auth" element={<SignUp />} />
             </Route>
             <Route element={<IsAdmin />}>
-              <Route path="/dashboard" element={<Dashboard />} exact />
-              <Route path="/dashboard-profile" element={<Profile />} exact />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard-profile" element={<Profile />} />
             </Route>
           </Routes>
         </Router>

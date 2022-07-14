@@ -6,19 +6,23 @@ function Verified() {
   const params = useParams();
   const navigate = useNavigate();
   useEffect(() => {
-    const data = decode(params.token);
-    const { user, token } = data;
-    if (user && token) {
-      const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), "secret", {
-        keySize: 128 / 8,
-        iv: "secret",
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7,
-      }).toString();
-      localStorage.setItem("a%t", encrypted);
+    try {
+      const data = decode(params.token);
+      const { user, token } = data;
+      if (user && token) {
+        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), "secret", {
+          keySize: 128 / 8,
+          iv: "secret",
+          mode: CryptoJS.mode.CBC,
+          padding: CryptoJS.pad.Pkcs7,
+        }).toString();
+        localStorage.setItem("a%t", encrypted);
 
-      navigate("/");
-    } else {
+        navigate("/");
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
       navigate("/");
     }
   });

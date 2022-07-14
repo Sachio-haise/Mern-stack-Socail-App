@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+
 function EmailVerify() {
   const params = useParams();
   const [auth, setAuth] = useState("");
   const [resentFlag, setResentFlag] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const auth = localStorage.getItem("a%t");
     const decrypted = JSON.parse(
