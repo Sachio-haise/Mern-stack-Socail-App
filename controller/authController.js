@@ -46,7 +46,7 @@ export const SignIn = async (req, res) => {
             expiresIn: maxAge,
           }
         );
-        const url = `http://localhost:5000/verify/${email_verify_token}`;
+        const url = `https://mern-social-app-2022.herokuapp.com/verify/${email_verify_token}`;
         const html = EmailTemplate({ url });
         sentMail({
           to: user.email,
@@ -93,7 +93,7 @@ export const SignUp = async (req, res) => {
     );
     if (user.email_verify_at == null) {
       try {
-        const url = `http://localhost:5000/verify/${email_verify_token}`;
+        const url = `https://mern-social-app-2022.herokuapp.com/verify/${email_verify_token}`;
         const html = EmailTemplate({ url });
         sentMail({
           to: user.email,
@@ -131,7 +131,7 @@ export const forgetPassword = async (req, res) => {
     }
   );
   try {
-    const url = `http://localhost:3000/reset-password`;
+    const url = `https://snazzy-lokum-0710bb.netlify.app/reset-password`;
     const html = EmailTemplate({ url, ramdom });
     sentMail({
       to: user.email,
@@ -203,7 +203,7 @@ export const resent = async (req, res) => {
       );
       if (user.email_verify_at == null) {
         try {
-          const url = `http://localhost:5000/verify/${email_verify_token}`;
+          const url = `https://mern-social-app-2022.herokuapp.com/verify/${email_verify_token}`;
           const html = EmailTemplate({ url });
           sentMail({
             to: user.email,
@@ -246,7 +246,9 @@ export const verify = async (req, res) => {
     const reset_token = jwt.sign({ user, token }, "secrect", {
       expiresIn: maxAge,
     });
-    res.redirect("http://localhost:3000/verified/" + reset_token);
+    res.redirect(
+      "https://snazzy-lokum-0710bb.netlify.app/verified/" + reset_token
+    );
   }
 };
 
