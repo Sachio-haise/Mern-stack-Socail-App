@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "httpNodeCors": {
+    "origin": "*",
+    "methods": "GET,PUT,POST,DELETE"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
