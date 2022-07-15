@@ -9,6 +9,7 @@ import {
   REMOVE_DATA,
   TRANS_DELETE_ID,
   TRANS_POST_ID,
+  TRANS_USER_DATA,
 } from "../../redux/transfer/types";
 import axios from "axios";
 import { getPosts, getPostsOnly } from "../../redux/post/actions";
@@ -211,7 +212,19 @@ function Home() {
                   <div className="card_header px-2 py-3 d-flex">
                     <img src={post.user.profile} style={{ height: "50px" }} />
                     <h5 className="ms-2">
-                      {post.user.name} <br />{" "}
+                      <Link
+                        style={{ color: "whitesmoke", textDecoration: "none" }}
+                        to="/user"
+                        onClick={() => {
+                          dispatch({
+                            type: TRANS_USER_DATA,
+                            payload: post.user,
+                          });
+                        }}
+                      >
+                        {post.user.name}
+                      </Link>{" "}
+                      <br />{" "}
                       <small className="fs-6">
                         {moment(post.create_At).fromNow()}
                       </small>

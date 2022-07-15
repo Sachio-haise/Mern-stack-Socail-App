@@ -11,6 +11,7 @@ import Verified from "./components/Verified/Verified";
 import { IsAdmin, HasAuth } from "./Middleware/AuthMiddleware";
 import Dashboard from "./components/Admin/Dashboard";
 import Sidebar from "./components/Layout/Admin/Sidebar";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
             <Route element={<HasAuth />}>
               <Route path="/auth" element={<SignUp />} />
             </Route>
+            <Route path="/user" element={<UserProfile />} />
+
             <Route element={<IsAdmin />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard-profile" element={<Profile />} />

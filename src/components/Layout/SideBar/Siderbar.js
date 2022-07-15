@@ -55,7 +55,7 @@ function Siderbar() {
           </button>
 
           <div
-            className="offcanvas offcanvas-start"
+            className="offcanvas offcanvas-start d-lg-none"
             id="offcanvasExample"
             aria-labelledby="offcanvasExampleLabel"
           >
@@ -71,11 +71,7 @@ function Siderbar() {
                   <img
                     className=" img-fluid profile-pic"
                     id="offcanvasExampleLabel"
-                    src={
-                      auth.auth.user?.profile
-                        ? auth.auth.user?.profile
-                        : "Profile/default.png.jpg"
-                    }
+                    src={auth.auth.user?.profile}
                   />
                 </div>
               </div>
@@ -86,51 +82,124 @@ function Siderbar() {
             </div>
             <div className="dropdown ">
               <ul className="navbar-nav mb-lg-0" id="menu">
-                <li>
-                  <Link
-                    to="/"
-                    onClick={() => setActive("home")}
-                    className={
-                      active == "home"
-                        ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
-                        : "nav-link offcanva-link px-4 py-3 align-middle"
-                    }
-                  >
-                    HOME
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#submenu3"
-                    onClick={() => setActive("btn1")}
-                    data-bs-toggle="collapse"
-                    className={
-                      active == "btn1"
-                        ? "nav-link offcanva-link px-4 align-middle text-danger py-3"
-                        : "nav-link offcanva-link px-4 align-middle py-3"
-                    }
-                  >
-                    BLOGS
-                  </a>
-                  <ul
-                    className="collapse nav flex-column ms-1"
-                    id="submenu3"
-                    data-bs-parent="#menu"
-                  >
-                    <li className="w-100 nav-link-parent py-2">
-                      <a href="#" className="nav-link-child  px-0">
+                {auth.auth.user && auth.auth.user.email_verify_at ? (
+                  <>
+                    {" "}
+                    {auth.auth.user?.isAdmin == "user" ? (
+                      <>
                         {" "}
-                        NEW FEEDS
-                      </a>
-                    </li>
-                    <li className=" nav-link-parent py-2">
-                      <a href="#" className="nav-link-child  px-0">
+                        {isHome ? (
+                          <li>
+                            <Link
+                              to="/"
+                              onClick={() => setActive("profile")}
+                              className={
+                                active == "profile"
+                                  ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
+                                  : "nav-link offcanva-link px-4 py-3 align-middle"
+                              }
+                            >
+                              Profile
+                            </Link>
+                          </li>
+                        ) : (
+                          <li>
+                            <Link
+                              to="/"
+                              onClick={() => setActive("home")}
+                              className={
+                                active == "home"
+                                  ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
+                                  : "nav-link offcanva-link px-4 py-3 align-middle"
+                              }
+                            >
+                              HOME
+                            </Link>
+                          </li>
+                        )}
+                      </>
+                    ) : (
+                      <>
                         {" "}
-                        POST
+                        {isHome ? (
+                          <li>
+                            <Link
+                              to="/"
+                              onClick={() => setActive("dashboard")}
+                              className={
+                                active == "dashboard"
+                                  ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
+                                  : "nav-link offcanva-link px-4 py-3 align-middle"
+                              }
+                            >
+                              Dashboard
+                            </Link>
+                          </li>
+                        ) : (
+                          <li>
+                            <Link
+                              to="/"
+                              onClick={() => setActive("home")}
+                              className={
+                                active == "home"
+                                  ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
+                                  : "nav-link offcanva-link px-4 py-3 align-middle"
+                              }
+                            >
+                              HOME
+                            </Link>
+                          </li>
+                        )}
+                      </>
+                    )}
+                    <li>
+                      <a
+                        href="#submenu3"
+                        onClick={() => setActive("btn1")}
+                        data-bs-toggle="collapse"
+                        className={
+                          active == "btn1"
+                            ? "nav-link offcanva-link px-4 align-middle text-danger py-3"
+                            : "nav-link offcanva-link px-4 align-middle py-3"
+                        }
+                      >
+                        BLOGS
                       </a>
-                    </li>
-                  </ul>
-                </li>
+                      <ul
+                        className="collapse nav flex-column ms-1"
+                        id="submenu3"
+                        data-bs-parent="#menu"
+                      >
+                        <li className="w-100 nav-link-parent py-2">
+                          <a href="#" className="nav-link-child  px-0">
+                            {" "}
+                            NEW FEEDS
+                          </a>
+                        </li>
+                        <li className=" nav-link-parent py-2">
+                          <a href="#" className="nav-link-child  px-0">
+                            {" "}
+                            POST
+                          </a>
+                        </li>
+                      </ul>
+                    </li>{" "}
+                  </>
+                ) : (
+                  <li>
+                    <Link
+                      to="/"
+                      onClick={() => setActive("sign_up")}
+                      className={
+                        active == "sign_up"
+                          ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
+                          : "nav-link offcanva-link px-4 py-3 align-middle"
+                      }
+                    >
+                      Sign Up
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
