@@ -247,7 +247,8 @@ export const verify = async (req, res) => {
       expiresIn: maxAge,
     });
     res.redirect(
-      "https://snazzy-lokum-0710bb.netlify.app/verified/" + reset_token
+      "https://mern-social-app-frontend2022.herokuapp.com/verified/" +
+        reset_token
     );
   }
 };
