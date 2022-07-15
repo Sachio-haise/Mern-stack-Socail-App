@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 
 export const auth = (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   try {
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, "secrect");
@@ -13,6 +15,8 @@ export const auth = (req, res, next) => {
 };
 
 export const admin = (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   try {
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, "secrect");
