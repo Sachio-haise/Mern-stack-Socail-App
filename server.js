@@ -8,7 +8,7 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
-app.use("/api", cors());
+app.use(cors());
 
 app.use("/api", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
