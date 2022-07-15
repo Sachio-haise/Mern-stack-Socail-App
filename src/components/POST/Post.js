@@ -72,6 +72,8 @@ function Post() {
         formData,
         {
           headers: {
+            AccessControlAllowOrigin: "*",
+            AccessControlAllowHeaders: "X-Requested-With",
             Authorization: `Bearer ${auth.token}`,
           },
         }
