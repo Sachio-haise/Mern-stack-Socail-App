@@ -32,28 +32,33 @@ import { getUsers } from "./controller/adminController.js";
 const upload = multer();
 const Router = express.Router();
 
-Router.post("/sign-up", upload.none(), SignUp);
-Router.post("/sign-in", upload.none(), SignIn);
-Router.get("/verify/:token", verify);
-Router.post("/resent", auth, upload.none(), resent);
-Router.post("/me", auth, upload.none(), me);
-Router.post("/update-profile", auth, upload.none(), updateProfile);
-Router.post("/update-bio", auth, uploadProfile.single("profile"), updateBio);
-Router.post("/forgot-password", upload.none(), forgetPassword);
-Router.post("/confirm-code/:token", upload.none(), confirmCode);
-Router.post("/reset-password/:token", upload.none(), resetPassword);
+Router.post("/api/sign-up", upload.none(), SignUp);
+Router.post("/api/sign-in", upload.none(), SignIn);
+Router.get("/api/verify/:token", verify);
+Router.post("/api/resent", auth, upload.none(), resent);
+Router.post("/api/me", auth, upload.none(), me);
+Router.post("/api/update-profile", auth, upload.none(), updateProfile);
+Router.post(
+  "/api/update-bio",
+  auth,
+  uploadProfile.single("profile"),
+  updateBio
+);
+Router.post("/api/forgot-password", upload.none(), forgetPassword);
+Router.post("/api/confirm-code/:token", upload.none(), confirmCode);
+Router.post("/api/reset-password/:token", upload.none(), resetPassword);
 
-Router.get("/posts", getPosts);
-Router.post("/create-post", auth, uploadFile.single("file"), createPost);
-Router.post("/edit-post/:id", auth, updateFile.single("file"), editPost);
-Router.delete("/delete-post/:id", auth, deletePost);
-Router.get("/like-post/:id", auth, likePost);
+Router.get("/api/posts", getPosts);
+Router.post("/api/create-post", auth, uploadFile.single("file"), createPost);
+Router.post("/api/edit-post/:id", auth, updateFile.single("file"), editPost);
+Router.delete("/api/delete-post/:id", auth, deletePost);
+Router.get("/api/like-post/:id", auth, likePost);
 
-Router.post("/comment-post/:id", auth, upload.none(), postComment);
-Router.get("/comment-delete/:id", auth, deleteComment);
-Router.get("/comment-like/:id", auth, likeComment);
-Router.post("/comment-edit/:id", auth, upload.none(), editComment);
+Router.post("/api/comment-post/:id", auth, upload.none(), postComment);
+Router.get("/api/comment-delete/:id", auth, deleteComment);
+Router.get("/api/comment-like/:id", auth, likeComment);
+Router.post("/api/comment-edit/:id", auth, upload.none(), editComment);
 
 //Admin
-Router.get("/admin/users", admin, getUsers);
+Router.get("/api/admin/users", admin, getUsers);
 export default Router;

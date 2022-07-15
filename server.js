@@ -8,13 +8,25 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
-app.use(cors());
+app.use("/api", cors());
 
-app.use(function (req, res, next) {
+app.use("/api", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
+
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
+    changeOrigin: true,
+    //secure: false,
+    onProxyRes: function (proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    },
+  })
+);
 
 //dbConnection
 const dbUrl =
