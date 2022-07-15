@@ -72,7 +72,8 @@ function Post() {
         formData,
         {
           headers: {
-            AccessControlAllowOrigin: "*",
+            AccessControlAllowOrigin:
+              "https://mern-social-app-frontend2022.herokuapp.com/",
             AccessControlAllowHeaders: "X-Requested-With",
             Authorization: `Bearer ${auth.token}`,
           },
