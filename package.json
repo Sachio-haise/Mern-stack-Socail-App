@@ -27,6 +27,10 @@
     "node": "16.14.2",
     "npm": "8.6.0"
   },
+  "httpNodeCors": {
+    "origin": "*",
+    "methods": "GET,PUT,POST,DELETE"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
