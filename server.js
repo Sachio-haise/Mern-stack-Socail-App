@@ -7,15 +7,6 @@ import { seedAdmin } from "./seeder/adminSeeder.js";
 import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
-//middleWare
-app.use(cors());
-
-app.use(function (req, res, next) {
-  req.header("Access-Control-Allow-Origin", "*");
-
-  next();
-});
-
 //dbConnection
 const dbUrl =
   "mongodb+srv://test:test@cluster0.i5wxb.mongodb.net/ReactNodeCRUD?retryWrites=true&w=majority";
