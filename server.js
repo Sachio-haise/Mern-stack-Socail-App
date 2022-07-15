@@ -16,18 +16,6 @@ app.use("/api", function (req, res, next) {
   next();
 });
 
-app.use(
-  "/api",
-  createProxyMiddleware({
-    target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
-    changeOrigin: true,
-    //secure: false,
-    onProxyRes: function (proxyRes, req, res) {
-      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
-    },
-  })
-);
-
 //dbConnection
 const dbUrl =
   "mongodb+srv://test:test@cluster0.i5wxb.mongodb.net/ReactNodeCRUD?retryWrites=true&w=majority";
