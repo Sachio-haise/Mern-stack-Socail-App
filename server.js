@@ -4,10 +4,22 @@ import cors from "cors";
 import routes from "./routes.js";
 import jwt from "jsonwebtoken";
 import { seedAdmin } from "./seeder/adminSeeder.js";
+import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
 app.use(cors());
+
+app.use(
+  createProxyMiddleware({
+    target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
+    changeOrigin: true,
+    //secure: false,
+    onProxyRes: function (proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    },
+  })
+);
 
 //dbConnection
 const dbUrl =
