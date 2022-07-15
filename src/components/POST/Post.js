@@ -39,7 +39,7 @@ function Post() {
       return;
     }
     await axios.delete(
-      "https://mern-social-app-2022.herokuapp.com/delete-post/" + delete_id,
+      "https://mern-social-app-2022.herokuapp.com/api/delete-post/" + delete_id,
       {
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -68,7 +68,7 @@ function Post() {
     if (edit_post) {
       console.log(Date.now());
       res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/edit-post/" + edit_id,
+        "https://mern-social-app-2022.herokuapp.com/api/edit-post/" + edit_id,
         formData,
         {
           headers: {
@@ -81,7 +81,7 @@ function Post() {
       });
     } else {
       res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/create-post",
+        "https://mern-social-app-2022.herokuapp.com/api/create-post",
         formData,
         {
           headers: {
