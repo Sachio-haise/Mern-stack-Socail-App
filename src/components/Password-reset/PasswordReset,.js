@@ -23,7 +23,7 @@ function PasswordReset() {
     const formData = new FormData();
     formData.append("email", email);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/forgot-password",
+      "https://mern-social-app-2022.herokuapp.com/api/forgot-password",
       formData
     );
     const { errors } = res.data;
@@ -48,7 +48,8 @@ function PasswordReset() {
     const formData = new FormData();
     formData.append("code", code);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/confirm-code/" + codeToken,
+      "https://mern-social-app-2022.herokuapp.com/api/confirm-code/" +
+        codeToken,
       formData
     );
     const { token, errors } = res.data;
@@ -72,7 +73,8 @@ function PasswordReset() {
     const formData = new FormData();
     formData.append("password", password);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/reset-password/" + codeToken,
+      "https://mern-social-app-2022.herokuapp.com/api/reset-password/" +
+        codeToken,
       formData
     );
     console.log(res.data);

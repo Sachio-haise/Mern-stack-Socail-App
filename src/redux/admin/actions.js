@@ -25,7 +25,7 @@ export const getUsers = () => async (dispatch) => {
       return;
     }
     const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/admin/users",
+      "https://mern-social-app-2022.herokuapp.com/api/admin/users",
       {
         headers: {
           Authorization: `Bearer ${decrypted.token}`,

@@ -26,7 +26,7 @@ function SignUp() {
       formData.append("password", password);
 
       res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/sign-up",
+        "https://mern-social-app-2022.herokuapp.com/api/sign-up",
         formData
       );
     } else {
@@ -34,7 +34,7 @@ function SignUp() {
       formData.append("password", password);
 
       res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/sign-in",
+        "https://mern-social-app-2022.herokuapp.com/api/sign-in",
         formData
       );
     }

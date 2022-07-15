@@ -40,7 +40,7 @@ function Profile() {
     formData.append("bio", bio);
     formData.append("profile", profile);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/update-bio",
+      "https://mern-social-app-2022.herokuapp.com/api/update-bio",
       formData,
       {
         headers: {
@@ -63,7 +63,7 @@ function Profile() {
     formData.append("password", password);
     formData.append("oldPassword", oldPassword);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/update-profile",
+      "https://mern-social-app-2022.herokuapp.com/api/update-profile",
       formData,
       {
         headers: {

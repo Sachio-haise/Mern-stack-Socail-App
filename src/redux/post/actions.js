@@ -6,7 +6,7 @@ export const getPosts = () => async (dispatch) => {
     type: PENDING_POST,
   });
   const res = await axios.get(
-    "https://mern-social-app-2022.herokuapp.com/posts"
+    "https://mern-social-app-2022.herokuapp.com/api/posts"
   );
   dispatch({
     type: GET_POST,
@@ -16,7 +16,7 @@ export const getPosts = () => async (dispatch) => {
 
 export const getPostsOnly = () => async (dispatch) => {
   const res = await axios.get(
-    "https://mern-social-app-2022.herokuapp.com/posts"
+    "https://mern-social-app-2022.herokuapp.com/api/posts"
   );
   dispatch({
     type: GET_POST,

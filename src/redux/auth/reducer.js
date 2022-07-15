@@ -28,7 +28,7 @@ export const getAuth = () => async (dispatch) => {
     const formData = new FormData();
     formData.append("token", decrypted.token);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/me",
+      "https://mern-social-app-2022.herokuapp.com/api/me",
       formData,
       {
         headers: {

@@ -35,7 +35,7 @@ function EmailVerify() {
     formData.append("token", auth.token);
     setLoading(true);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/resent",
+      "https://mern-social-app-2022.herokuapp.com/api/resent",
       formData,
       {
         headers: {

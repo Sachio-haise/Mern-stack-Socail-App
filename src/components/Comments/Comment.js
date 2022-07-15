@@ -34,7 +34,7 @@ function Comment({ comment, post }) {
     formData.append("target_user", comment.user_id._id);
     formData.append("comment", reply);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/comment-post/" + id,
+      "https://mern-social-app-2022.herokuapp.com/api/comment-post/" + id,
       formData,
       {
         headers: {
@@ -56,7 +56,7 @@ function Comment({ comment, post }) {
     }
     setWait(true);
     const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/comment-delete/" + id,
+      "https://mern-social-app-2022.herokuapp.com/api/comment-delete/" + id,
       {
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -89,7 +89,7 @@ function Comment({ comment, post }) {
     }
 
     const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/comment-like/" + id,
+      "https://mern-social-app-2022.herokuapp.com/api/comment-like/" + id,
       {
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -106,7 +106,8 @@ function Comment({ comment, post }) {
     const formData = new FormData();
     formData.append("comment", reply);
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/comment-edit/" + comment._id,
+      "https://mern-social-app-2022.herokuapp.com/api/comment-edit/" +
+        comment._id,
       formData,
       {
         headers: {

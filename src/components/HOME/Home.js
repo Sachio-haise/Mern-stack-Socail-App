@@ -81,7 +81,7 @@ function Home() {
     const formData = new FormData();
     formData.append("user_id", auth.user._id);
     const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/like-post/" + id,
+      "https://mern-social-app-2022.herokuapp.com/api/like-post/" + id,
       {
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -106,7 +106,7 @@ function Home() {
     formData.append("comment", comment);
     setComment("");
     const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/comment-post/" + id,
+      "https://mern-social-app-2022.herokuapp.com/api/comment-post/" + id,
       formData,
       {
         headers: {
