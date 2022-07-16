@@ -45,7 +45,6 @@ function Post() {
         AccessControlAllowOrigin: "*",
         ContentType: "application/json",
       },
-      mode: "no-cors",
     });
     dispatch({
       type: REMOVE_DATA,
@@ -88,7 +87,6 @@ function Post() {
           AccessControlAllowOrigin: "*",
           ContentType: "application/json",
         },
-        mode: "no-cors",
       });
     }
     dispatch(getPosts());
