@@ -28,10 +28,12 @@ import {
   postComment,
 } from "./controller/commentController.js";
 import { getUsers } from "./controller/adminController.js";
+import cors from "cors";
 
 const upload = multer();
 const Router = express.Router();
 
+Router.use(cors());
 Router.all(function (req, res, next) {
   res.setHeader(
     "Access-Control-Allow-Origin",

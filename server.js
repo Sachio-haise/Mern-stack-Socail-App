@@ -4,7 +4,6 @@ import cors from "cors";
 import routes from "./routes.js";
 import jwt from "jsonwebtoken";
 import { seedAdmin } from "./seeder/adminSeeder.js";
-import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
