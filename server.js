@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(
   createProxyMiddleware({
-    target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
+    target: "https://mern-social-app-frontend2022.herokuapp.com", //original url
     changeOrigin: true,
     //secure: false,
     onProxyRes: function (proxyRes, req, res) {
