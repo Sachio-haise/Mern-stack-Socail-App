@@ -42,6 +42,8 @@ function Post() {
     await axios.delete(`${server_url}/api/delete-post/` + delete_id, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
+        AccessControlAllowOrigin: "*",
+        ContentType: "application/json",
       },
       mode: "no-cors",
     });
@@ -71,12 +73,9 @@ function Post() {
         formData,
         {
           headers: {
-            AccessControlAllowOrigin:
-              "https://mern-social-app-frontend2022.herokuapp.com/",
-            AccessControlAllowHeaders: "X-Requested-With",
             Authorization: `Bearer ${auth.token}`,
+            ContentType: "application/json",
           },
-          mode: "no-cors",
         }
       );
       dispatch({
@@ -86,6 +85,8 @@ function Post() {
       res = await axios.post(`${server_url}/api/create-post`, formData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
+          AccessControlAllowOrigin: "*",
+          ContentType: "application/json",
         },
         mode: "no-cors",
       });
