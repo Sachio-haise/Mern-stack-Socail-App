@@ -8,12 +8,4 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
-
-  app.use(
-    proxy("/api", {
-      target: "https://mern-social-app-2022.herokuapp.com",
-      secure: false,
-      changeOrigin: true,
-    })
-  );
 };
