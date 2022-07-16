@@ -5,8 +5,11 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "https://mern-social-app-2022.herokuapp.com/api",
+      target: "https://mern-social-app-2022.herokuapp.com",
       changeOrigin: true,
+      onProxyRes: function (proxyRes, req, res) {
+        proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+      },
     })
   );
 };
