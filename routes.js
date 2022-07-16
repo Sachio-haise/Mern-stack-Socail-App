@@ -32,7 +32,7 @@ import { getUsers } from "./controller/adminController.js";
 const upload = multer();
 const Router = express.Router();
 
-Router.all("/", function (req, res, next) {
+Router.all(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
