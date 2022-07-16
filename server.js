@@ -6,9 +6,6 @@ import jwt from "jsonwebtoken";
 import { seedAdmin } from "./seeder/adminSeeder.js";
 const app = express();
 
-//middleWare
-app.use(cors());
-
 //dbConnection
 const dbUrl =
   "mongodb+srv://test:test@cluster0.i5wxb.mongodb.net/ReactNodeCRUD?retryWrites=true&w=majority";

@@ -33,24 +33,6 @@ import cors from "cors";
 const upload = multer();
 const Router = express.Router();
 
-Router.use(cors());
-Router.all(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://mern-social-app-frontend2022.herokuapp.com"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
-
 Router.post("/api/sign-up", upload.none(), SignUp);
 Router.post("/api/sign-in", upload.none(), SignIn);
 Router.get("/api/verify/:token", verify);
@@ -71,18 +53,18 @@ Router.get("/api/posts", getPosts);
 Router.post(
   "/api/create-post",
   auth,
-  cors(),
+
   uploadFile.single("file"),
   createPost
 );
 Router.post(
   "/api/edit-post/:id",
   auth,
-  cors(),
+
   updateFile.single("file"),
   editPost
 );
-Router.delete("/api/delete-post/:id", cors(), auth, deletePost);
+Router.delete("/api/delete-post/:id", auth, deletePost);
 Router.get("/api/like-post/:id", auth, likePost);
 
 Router.post("/api/comment-post/:id", auth, upload.none(), postComment);
