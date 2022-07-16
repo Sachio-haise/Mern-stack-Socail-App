@@ -32,6 +32,12 @@ import { getUsers } from "./controller/adminController.js";
 const upload = multer();
 const Router = express.Router();
 
+Router.all("/", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 Router.post("/api/sign-up", upload.none(), SignUp);
 Router.post("/api/sign-in", upload.none(), SignIn);
 Router.get("/api/verify/:token", verify);
