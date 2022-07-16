@@ -43,6 +43,7 @@ function Post() {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
+      mode: "no-cors",
     });
     dispatch({
       type: REMOVE_DATA,
@@ -75,6 +76,7 @@ function Post() {
             AccessControlAllowHeaders: "X-Requested-With",
             Authorization: `Bearer ${auth.token}`,
           },
+          mode: "no-cors",
         }
       );
       dispatch({
@@ -85,6 +87,7 @@ function Post() {
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
+        mode: "no-cors",
       });
     }
     dispatch(getPosts());
