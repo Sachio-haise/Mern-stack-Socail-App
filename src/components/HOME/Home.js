@@ -81,7 +81,7 @@ function Home() {
     }
     const formData = new FormData();
     formData.append("user_id", auth.user._id);
-    const res = await axios.get(`/api/like-post/` + id, {
+    const res = await axios.get(`${server_url}/api/like-post/` + id, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
@@ -103,11 +103,15 @@ function Home() {
     formData.append("post_id", id);
     formData.append("comment", comment);
     setComment("");
-    const res = await axios.post(`/api/comment-post/` + id, formData, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.post(
+      `${server_url}/api/comment-post/` + id,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     await dispatch(getPostsOnly());
     setCreateLoading("");
     console.log(res.data);

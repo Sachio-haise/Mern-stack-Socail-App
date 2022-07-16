@@ -28,7 +28,7 @@ export const getAuth = () => async (dispatch) => {
     }
     const formData = new FormData();
     formData.append("token", decrypted.token);
-    const res = await axios.post(`/api/me`, formData, {
+    const res = await axios.post(`${server_url}/api/me`, formData, {
       headers: {
         Authorization: `Bearer ${decrypted.token}`,
       },

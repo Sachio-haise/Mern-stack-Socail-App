@@ -34,11 +34,15 @@ function Comment({ comment, post }) {
     formData.append("parent_id", parent_id);
     formData.append("target_user", comment.user_id._id);
     formData.append("comment", reply);
-    const res = await axios.post(`/api/comment-post/` + id, formData, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.post(
+      `${server_url}/api/comment-post/` + id,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
 
     await dispatch(getPostsOnly());
 
@@ -52,7 +56,7 @@ function Comment({ comment, post }) {
       return;
     }
     setWait(true);
-    const res = await axios.get(`/api/comment-delete/` + id, {
+    const res = await axios.get(`${server_url}/api/comment-delete/` + id, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
@@ -82,7 +86,7 @@ function Comment({ comment, post }) {
       setLikeCount(likeCount + 1);
     }
 
-    const res = await axios.get(`/api/comment-like/` + id, {
+    const res = await axios.get(`${server_url}/api/comment-like/` + id, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
@@ -96,11 +100,15 @@ function Comment({ comment, post }) {
 
     const formData = new FormData();
     formData.append("comment", reply);
-    const res = await axios.post(`/api/comment-edit/` + comment._id, formData, {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+    const res = await axios.post(
+      `${server_url}/api/comment-edit/` + comment._id,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
     await dispatch(getPostsOnly());
     setLoading(false);
     setIsEdit(false);

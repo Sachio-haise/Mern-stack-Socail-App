@@ -40,7 +40,7 @@ function Profile() {
     const formData = new FormData();
     formData.append("bio", bio);
     formData.append("profile", profile);
-    const res = await axios.post(`/api/update-bio`, formData, {
+    const res = await axios.post(`${server_url}/api/update-bio`, formData, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
@@ -59,7 +59,7 @@ function Profile() {
     formData.append("email", email);
     formData.append("password", password);
     formData.append("oldPassword", oldPassword);
-    const res = await axios.post(`/api/update-profile`, formData, {
+    const res = await axios.post(`${server_url}/api/update-profile`, formData, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },

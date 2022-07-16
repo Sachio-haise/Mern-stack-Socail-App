@@ -6,7 +6,7 @@ export const getPosts = () => async (dispatch) => {
   dispatch({
     type: PENDING_POST,
   });
-  const res = await axios.get(`/api/posts`);
+  const res = await axios.get(`${server_url}/api/posts`);
   dispatch({
     type: GET_POST,
     payload: res.data.data,
@@ -14,7 +14,7 @@ export const getPosts = () => async (dispatch) => {
 };
 
 export const getPostsOnly = () => async (dispatch) => {
-  const res = await axios.get(`/api/posts`);
+  const res = await axios.get(`${server_url}/api/posts`);
 
   dispatch({
     type: GET_POST,

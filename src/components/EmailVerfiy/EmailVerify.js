@@ -35,7 +35,7 @@ function EmailVerify() {
     const formData = new FormData();
     formData.append("token", auth.token);
     setLoading(true);
-    const res = await axios.post(`/api/resent`, formData, {
+    const res = await axios.post(`${server_url}/api/resent`, formData, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },

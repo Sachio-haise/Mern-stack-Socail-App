@@ -25,7 +25,7 @@ export const getUsers = () => async (dispatch) => {
       });
       return;
     }
-    const res = await axios.get(`/api/admin/users`, {
+    const res = await axios.get(`${server_url}/api/admin/users`, {
       headers: {
         Authorization: `Bearer ${decrypted.token}`,
       },

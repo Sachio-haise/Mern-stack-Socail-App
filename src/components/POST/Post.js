@@ -39,7 +39,7 @@ function Post() {
     if (!auth) {
       return;
     }
-    await axios.delete(`/api/delete-post/` + delete_id, {
+    await axios.delete(`${server_url}/api/delete-post/` + delete_id, {
       headers: {
         Authorization: `Bearer ${auth.token}`,
       },
@@ -65,19 +65,23 @@ function Post() {
 
     if (edit_post) {
       console.log(Date.now());
-      res = await axios.post(`/api/edit-post/` + edit_id, formData, {
-        headers: {
-          AccessControlAllowOrigin:
-            "https://mern-social-app-frontend2022.herokuapp.com/",
-          AccessControlAllowHeaders: "X-Requested-With",
-          Authorization: `Bearer ${auth.token}`,
-        },
-      });
+      res = await axios.post(
+        `${server_url}/api/edit-post/` + edit_id,
+        formData,
+        {
+          headers: {
+            AccessControlAllowOrigin:
+              "https://mern-social-app-frontend2022.herokuapp.com/",
+            AccessControlAllowHeaders: "X-Requested-With",
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
+      );
       dispatch({
         type: REMOVE_DATA,
       });
     } else {
-      res = await axios.post(`/api/create-post`, formData, {
+      res = await axios.post(`${server_url}/api/create-post`, formData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
