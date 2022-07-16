@@ -35,7 +35,7 @@ const Router = express.Router();
 Router.all(function (req, res, next) {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://mern-social-app-frontend2022.herokuapp.com/"
+    "https://mern-social-app-frontend2022.herokuapp.com"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
