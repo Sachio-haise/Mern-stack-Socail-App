@@ -8,7 +8,19 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
-app.use("/api", cors());
+app.use(cors());
+
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
+    changeOrigin: true,
+    //secure: false,
+    onProxyRes: function (proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    },
+  })
+);
 
 //dbConnection
 const dbUrl =
