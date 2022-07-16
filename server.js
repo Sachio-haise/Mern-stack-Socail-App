@@ -8,7 +8,7 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 
 //middleWare
-app.use("/api", cors());
+app.use(cors());
 
 //dbConnection
 const dbUrl =
