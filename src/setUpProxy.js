@@ -6,6 +6,9 @@ module.exports = function (app) {
       target: "https://mern-social-app-2022.herokuapp.com",
       // secure: false,
       changeOrigin: true,
+      onProxyRes: function (proxyRes, req, res) {
+        proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+      },
     })
   );
 };
