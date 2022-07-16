@@ -3,6 +3,7 @@ import axios from "axios";
 import CryptoJS, { enc } from "crypto-js";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
+import { server_url } from "../../config";
 function SignUp() {
   const [login, setLogin] = useState(false);
   const [name, setName] = useState("");
@@ -25,18 +26,12 @@ function SignUp() {
       formData.append("email", email);
       formData.append("password", password);
 
-      res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/api/sign-up",
-        formData
-      );
+      res = await axios.post(`/api/sign-up`, formData);
     } else {
       formData.append("email", email);
       formData.append("password", password);
 
-      res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/api/sign-in",
-        formData
-      );
+      res = await axios.post(`/api/sign-in`, formData);
     }
     if (res.data.errors) {
       setErrors(res.data.errors);

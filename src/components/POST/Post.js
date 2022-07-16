@@ -7,6 +7,7 @@ import CryptoJS from "crypto-js";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/post/actions";
 import { REMOVE_DATA } from "../../redux/transfer/types";
+import { server_url } from "../../config";
 
 function Post() {
   const [post, setPost] = useState("");
@@ -38,14 +39,11 @@ function Post() {
     if (!auth) {
       return;
     }
-    await axios.delete(
-      "https://mern-social-app-2022.herokuapp.com/api/delete-post/" + delete_id,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    await axios.delete(`/api/delete-post/` + delete_id, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     dispatch({
       type: REMOVE_DATA,
     });
@@ -67,31 +65,23 @@ function Post() {
 
     if (edit_post) {
       console.log(Date.now());
-      res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/api/edit-post/" + edit_id,
-        formData,
-        {
-          headers: {
-            AccessControlAllowOrigin:
-              "https://mern-social-app-frontend2022.herokuapp.com/",
-            AccessControlAllowHeaders: "X-Requested-With",
-            Authorization: `Bearer ${auth.token}`,
-          },
-        }
-      );
+      res = await axios.post(`/api/edit-post/` + edit_id, formData, {
+        headers: {
+          AccessControlAllowOrigin:
+            "https://mern-social-app-frontend2022.herokuapp.com/",
+          AccessControlAllowHeaders: "X-Requested-With",
+          Authorization: `Bearer ${auth.token}`,
+        },
+      });
       dispatch({
         type: REMOVE_DATA,
       });
     } else {
-      res = await axios.post(
-        "https://mern-social-app-2022.herokuapp.com/api/create-post",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-        }
-      );
+      res = await axios.post(`/api/create-post`, formData, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      });
     }
     dispatch(getPosts());
     console.log(res.data);
@@ -185,7 +175,7 @@ function Post() {
                     />
                     <img
                       className={
-                        edit_id || image
+                        image
                           ? "d-block mt-3 img-fluid  border border-danger border-2 rounded"
                           : "d-none"
                       }

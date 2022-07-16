@@ -3,6 +3,7 @@ import { LOGOUT } from "../auth/types";
 import decode from "jwt-decode";
 import CryptoJS from "crypto-js";
 import { GET_USERS } from "./type";
+import { server_url } from "../../config";
 export const getUsers = () => async (dispatch) => {
   const auth = localStorage.getItem("a%t");
   if (auth) {
@@ -24,14 +25,11 @@ export const getUsers = () => async (dispatch) => {
       });
       return;
     }
-    const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/api/admin/users",
-      {
-        headers: {
-          Authorization: `Bearer ${decrypted.token}`,
-        },
-      }
-    );
+    const res = await axios.get(`/api/admin/users`, {
+      headers: {
+        Authorization: `Bearer ${decrypted.token}`,
+      },
+    });
     dispatch({
       type: GET_USERS,
       payload: res.data,

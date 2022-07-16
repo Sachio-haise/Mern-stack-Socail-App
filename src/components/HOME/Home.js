@@ -15,6 +15,7 @@ import axios from "axios";
 import { getPosts, getPostsOnly } from "../../redux/post/actions";
 import { LIKE_PENDING } from "../../redux/post/types";
 import Comment from "../Comments/Comment";
+import { server_url } from "../../config";
 
 function Home() {
   const [active, setActive] = useState("");
@@ -80,14 +81,11 @@ function Home() {
     }
     const formData = new FormData();
     formData.append("user_id", auth.user._id);
-    const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/api/like-post/" + id,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.get(`/api/like-post/` + id, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     await dispatch(getPostsOnly());
 
     setTimeout(() => {
@@ -105,15 +103,11 @@ function Home() {
     formData.append("post_id", id);
     formData.append("comment", comment);
     setComment("");
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/comment-post/" + id,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/comment-post/` + id, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     await dispatch(getPostsOnly());
     setCreateLoading("");
     console.log(res.data);

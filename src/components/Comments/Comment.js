@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getPostsOnly } from "../../redux/post/actions";
 import { LIKE_PENDING } from "../../redux/post/types";
+import { server_url } from "../../config";
 function Comment({ comment, post }) {
   const [isReply, setIsReply] = useState(false);
   const [parent_id, setParent_id] = useState("");
@@ -33,15 +34,11 @@ function Comment({ comment, post }) {
     formData.append("parent_id", parent_id);
     formData.append("target_user", comment.user_id._id);
     formData.append("comment", reply);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/comment-post/" + id,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/comment-post/` + id, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
 
     await dispatch(getPostsOnly());
 
@@ -55,14 +52,11 @@ function Comment({ comment, post }) {
       return;
     }
     setWait(true);
-    const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/api/comment-delete/" + id,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.get(`/api/comment-delete/` + id, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     setTimeout(() => {
       setWait(false);
     }, [1000]);
@@ -88,14 +82,11 @@ function Comment({ comment, post }) {
       setLikeCount(likeCount + 1);
     }
 
-    const res = await axios.get(
-      "https://mern-social-app-2022.herokuapp.com/api/comment-like/" + id,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.get(`/api/comment-like/` + id, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     setTimeout(() => setlikeLoading(false), 1000);
     dispatch(getPostsOnly());
     console.log(res.data);
@@ -105,16 +96,11 @@ function Comment({ comment, post }) {
 
     const formData = new FormData();
     formData.append("comment", reply);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/comment-edit/" +
-        comment._id,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/comment-edit/` + comment._id, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     await dispatch(getPostsOnly());
     setLoading(false);
     setIsEdit(false);

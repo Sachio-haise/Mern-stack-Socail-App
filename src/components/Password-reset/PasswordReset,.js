@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { server_url } from "../../config";
 import "./PasswordReset.css";
 function PasswordReset() {
   const [loading, setLoading] = useState(false);
@@ -22,10 +23,7 @@ function PasswordReset() {
     setLoading(true);
     const formData = new FormData();
     formData.append("email", email);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/forgot-password",
-      formData
-    );
+    const res = await axios.post(`/api/forgot-password`, formData);
     const { errors } = res.data;
     if (errors) {
       setError(errors);
@@ -47,11 +45,7 @@ function PasswordReset() {
     setLoading(true);
     const formData = new FormData();
     formData.append("code", code);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/confirm-code/" +
-        codeToken,
-      formData
-    );
+    const res = await axios.post(`/api/confirm-code/` + codeToken, formData);
     const { token, errors } = res.data;
     if (errors) {
       setError(errors);
@@ -72,11 +66,7 @@ function PasswordReset() {
     setLoading(true);
     const formData = new FormData();
     formData.append("password", password);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/reset-password/" +
-        codeToken,
-      formData
-    );
+    const res = await axios.post(`/api/reset-password/` + codeToken, formData);
     console.log(res.data);
     setLoading(false);
     navigate("/");

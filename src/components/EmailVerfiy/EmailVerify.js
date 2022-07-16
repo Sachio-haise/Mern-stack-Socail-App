@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { server_url } from "../../config";
 
 function EmailVerify() {
   const params = useParams();
@@ -34,15 +35,11 @@ function EmailVerify() {
     const formData = new FormData();
     formData.append("token", auth.token);
     setLoading(true);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/resent",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/resent`, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     const { user, token } = res.data;
     if (user) {
       if (user.email_verify_at != null) {

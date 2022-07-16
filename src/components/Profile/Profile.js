@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Profile.css";
 import { useLocation } from "react-router-dom";
 import { getAuth } from "../../redux/auth/reducer";
+import { server_url } from "../../config";
 function Profile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,15 +40,11 @@ function Profile() {
     const formData = new FormData();
     formData.append("bio", bio);
     formData.append("profile", profile);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/update-bio",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/update-bio`, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     setEditLoading(false);
     setEdit(false);
 
@@ -62,15 +59,11 @@ function Profile() {
     formData.append("email", email);
     formData.append("password", password);
     formData.append("oldPassword", oldPassword);
-    const res = await axios.post(
-      "https://mern-social-app-2022.herokuapp.com/api/update-profile",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-        },
-      }
-    );
+    const res = await axios.post(`/api/update-profile`, formData, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    });
     setLoading(false);
     const { errors } = res.data;
     if (errors) {
