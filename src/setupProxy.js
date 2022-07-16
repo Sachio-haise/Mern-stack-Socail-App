@@ -5,7 +5,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "https://mern-social-app-2022.herokuapp.com",
+      target: "https://mern-social-app-2022.herokuapp.com/api",
       changeOrigin: true,
     })
   );
