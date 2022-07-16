@@ -11,7 +11,6 @@ const app = express();
 app.use(cors());
 
 app.use(
-  "/api",
   createProxyMiddleware({
     target: "https://mern-social-app-frontend2022.herokuapp.com/", //original url
     changeOrigin: true,
