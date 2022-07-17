@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth } from "../../../redux/auth/reducer";
 import { LOGOUT } from "../../../redux/auth/types";
 import { getPosts } from "../../../redux/post/actions";
+import { REMOVE_DATA } from "../../../redux/transfer/types";
+import Post from "../../POST/Post";
 import "./Sidebar.css";
 function Siderbar() {
   const [active, setActive] = useState("");
@@ -124,7 +126,7 @@ function Siderbar() {
                         {isHome ? (
                           <li>
                             <Link
-                              to="/"
+                              to="/dashboard"
                               onClick={() => setActive("dashboard")}
                               className={
                                 active == "dashboard"
@@ -170,20 +172,25 @@ function Siderbar() {
                         id="submenu3"
                         data-bs-parent="#menu"
                       >
-                        <li className="w-100 nav-link-parent py-2">
-                          <a href="#" className="nav-link-child  px-0">
-                            {" "}
-                            NEW FEEDS
-                          </a>
-                        </li>
                         <li className=" nav-link-parent py-2">
-                          <a href="#" className="nav-link-child  px-0">
+                          <a
+                            href="#"
+                            className="nav-link-child  px-0"
+                            onClick={() => {
+                              dispatch({
+                                type: REMOVE_DATA,
+                              });
+                            }}
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"
+                          >
                             {" "}
                             POST
                           </a>
                         </li>
                       </ul>
                     </li>{" "}
+                    <Post />
                   </>
                 ) : (
                   <li>

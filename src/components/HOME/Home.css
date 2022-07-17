@@ -168,3 +168,7 @@
     box-shadow: -24px 0 #fff, 24px 0 rgb(148, 2, 2);
   }
 }
+
+.side-menu.info li {
+  list-style-type: none;
+}

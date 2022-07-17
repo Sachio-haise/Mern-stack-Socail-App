@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Post from "../POST/Post";
 import moment from "moment";
+import Clock from "react-digital-clock";
 import "./PageLoading.css";
 import "./Home.css";
+
 import {
   REMOVE_DATA,
   TRANS_DELETE_ID,
@@ -118,7 +120,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="main">
       {postLoading.loading && (
         <div className="mx-auto loading-group">
           <h1 className="page-loading fw-bold col-md-none col-lg-block">
@@ -135,6 +137,7 @@ function Home() {
           </h1>
         </div>
       )}
+
       <div
         className="container-fluid"
         style={postLoading.loading ? { filter: "blur(10px)" } : {}}
@@ -197,6 +200,35 @@ function Home() {
                   <Post />
                 </li>
               </ul>
+            </div>
+            <div className="side-menu p-3 text-light fw-bold card">
+              <div className="card-header me-auto">
+                <Clock />
+              </div>
+              <div className="card-body">
+                <h5>About This Site</h5>
+                <ul>
+                  <li>
+                    <legend>Features</legend>
+                    <ul>
+                      <li>Can Create Account with gmail</li>
+                      <li>Create Post</li>
+                      <li>Comment Post</li>
+                      <li>Like Post</li>
+                      <li>Like Comments</li>
+                      <li>Reply Comments</li>
+                    </ul>
+                    <p>
+                      And we will add more features and fix more about
+                      responsive for good user experiences{" "}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div className="card-footer">
+                Join our discord channel to collaborator our project. &nbsp;
+                <a href="https://www.facebook.com/">Discord</a>
+              </div>
             </div>
           </div>
           <div className="col-md-9 col-lg-8 mx-auto main_field">

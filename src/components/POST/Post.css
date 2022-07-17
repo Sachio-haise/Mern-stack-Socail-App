@@ -6,6 +6,26 @@
 .modal-dialog {
   right: 5vw;
 }
+
+@media only screen and (max-width: 991px) {
+  .modal-content {
+    width: 600px;
+  }
+
+  .modal-dialog {
+    right: 8vw;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .modal-content {
+    width: 550px;
+  }
+
+  .modal-dialog {
+    left: 14vw;
+  }
+}
 .text-field::placeholder {
   color: #2b2b2b;
   font-weight: bold;
