@@ -81,19 +81,14 @@ function Post() {
         type: REMOVE_DATA,
       });
     } else {
-      res = await fetch(
-        `${server_url}/api/create-post`,
-        {
-          method: "POST",
-          body: formData,
+      res = await fetch(`${server_url}/api/create-post`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      });
     }
     dispatch(getPosts());
     console.log(res.data);
