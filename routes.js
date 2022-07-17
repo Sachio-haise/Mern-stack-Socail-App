@@ -34,7 +34,6 @@ import { testone } from "./controller/testController.js";
 const upload = multer();
 const Router = express.Router();
 
-Router.use(cors());
 Router.all(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
