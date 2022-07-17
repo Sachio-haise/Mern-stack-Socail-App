@@ -1,6 +1,6 @@
 import { Post } from "../Schema/postSchema.js";
 import { User } from "../Schema/userSchema.js";
-import fs from "fs";
+
 export const getPosts = async (req, res) => {
   var posts = await Post.find({})
     .populate("user")
