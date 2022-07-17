@@ -5,9 +5,8 @@ import { User } from "../Schema/userSchema.js";
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
-    console.log(file);
-    /*   const { text, user_id } = req.body;
-   const post = await Post.create({
+    const { text, user_id } = req.body;
+    const post = await Post.create({
       user: user_id,
       text: text,
       created_At: Date.now(),
@@ -21,10 +20,9 @@ const storage = multer.diskStorage({
       fs.mkdirSync(dir);
     }
     cb(null, dir);
-    */
   },
   filename: function (req, file, cb) {
-    /*   cb(
+    cb(
       null,
       file.fieldname +
         "-" +
@@ -32,7 +30,6 @@ const storage = multer.diskStorage({
         "_" +
         file.originalname
     );
-    */
   },
 });
 
