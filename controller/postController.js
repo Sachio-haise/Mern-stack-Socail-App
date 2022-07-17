@@ -27,22 +27,23 @@ export const createPost = async (req, res) => {
   if (file) {
     const folderName = "post_" + post._id;
     const fileName = req.body.text.substring(0, 5) + "-" + file.name;
-    const dir = "../client/public/Posts/" + folderName + "/";
+    const dir = "./Storage/Posts/" + folderName;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
 
-    file.mv(`${dir}${fileName}`, (err) => {
+    file.mv(`${dir}/${fileName}`, (err) => {
       if (err) {
         console.error(err);
         res.status(500).send(err);
         return;
       }
     });
+    const path = "http://localhost:5000/images/Posts/";
     await Post.findByIdAndUpdate(
       post._id,
       {
-        file: "Posts/" + folderName + "/" + fileName,
+        file: path + folderName + "/" + fileName,
       },
       { new: true }
     );
