@@ -18,11 +18,7 @@ export const getPosts = () => async (dispatch) => {
 };
 
 export const getPostsOnly = () => async (dispatch) => {
-  const res = await axios.get(`${server_url}/api/posts`, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  const res = await axios.get(`${server_url}/api/posts`);
 
   dispatch({
     type: GET_POST,

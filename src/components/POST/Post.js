@@ -73,7 +73,7 @@ function Post() {
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -81,13 +81,10 @@ function Post() {
         type: REMOVE_DATA,
       });
     } else {
-      res = await fetch(`${server_url}/api/create-post`, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
+      res = await axios.post(`/api/create-post`, formData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "multipart/form-data",
         },
       });
     }
