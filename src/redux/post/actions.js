@@ -6,7 +6,11 @@ export const getPosts = () => async (dispatch) => {
   dispatch({
     type: PENDING_POST,
   });
-  const res = await axios.get(`${server_url}/api/posts`, {
+
+  const res = await fetch(`${server_url}/api/posts`, {
+    method: "GET",
+
+    mode: "no-cors",
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
