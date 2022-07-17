@@ -81,7 +81,7 @@ function Post() {
         type: REMOVE_DATA,
       });
     } else {
-      res = await axios.post(`/api/create-post`, formData, {
+      res = await axios.post(`${server_url}/api/create-post`, formData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
           "Content-Type": "multipart/form-data",
