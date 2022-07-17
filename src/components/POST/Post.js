@@ -86,7 +86,6 @@ function Post() {
         body: formData,
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          "Content-Type": "application/json",
         },
       });
     }

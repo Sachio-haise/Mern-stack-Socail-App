@@ -10,9 +10,10 @@ function Atest() {
   const postImage = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    const res = await axios.post(`${server_url}/api/test`, formData, {
+    const res = await fetch(`${server_url}/api/test`, {
+      method: "POST",
+      body: formData,
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${auth.token}`,
       },
     });
