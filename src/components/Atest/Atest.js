@@ -14,6 +14,7 @@ function Atest() {
     const res = await axios.post(`${server_url}/api/test`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${auth.token}`,
       },
     });
     console.log(res.data);
