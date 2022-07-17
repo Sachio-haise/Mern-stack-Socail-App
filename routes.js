@@ -29,6 +29,7 @@ import {
 } from "./controller/commentController.js";
 import { getUsers } from "./controller/adminController.js";
 import cors from "cors";
+import { testone } from "./controller/testController.js";
 
 const upload = multer();
 const Router = express.Router();
@@ -65,20 +66,8 @@ Router.post("/api/confirm-code/:token", upload.none(), confirmCode);
 Router.post("/api/reset-password/:token", upload.none(), resetPassword);
 
 Router.get("/api/posts", getPosts);
-Router.post(
-  "/api/create-post",
-  auth,
-
-  uploadFile.single("file"),
-  createPost
-);
-Router.post(
-  "/api/edit-post/:id",
-  auth,
-
-  updateFile.single("file"),
-  editPost
-);
+Router.post("/api/create-post", auth, uploadFile.single("file"), createPost);
+Router.post("/api/edit-post/:id", auth, updateFile.single("file"), editPost);
 Router.delete("/api/delete-post/:id", auth, deletePost);
 Router.get("/api/like-post/:id", auth, likePost);
 
@@ -89,4 +78,7 @@ Router.post("/api/comment-edit/:id", auth, upload.none(), editComment);
 
 //Admin
 Router.get("/api/admin/users", admin, getUsers);
+
+//test image
+Router.post("/api/test", auth, upload.single("file"), testone);
 export default Router;

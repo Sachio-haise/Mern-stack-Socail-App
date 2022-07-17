@@ -4,10 +4,13 @@ import cors from "cors";
 import routes from "./routes.js";
 import jwt from "jsonwebtoken";
 import { seedAdmin } from "./seeder/adminSeeder.js";
+import bodyParser from "body-parser";
 const app = express();
 
 //middleWare
 app.use(cors());
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 //dbConnection
 const dbUrl =
