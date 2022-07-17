@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     req.post_id = post._id;
 
     const folderName = "post_" + post._id;
-    const dir = "../client/public/Posts/" + folderName;
+    const dir = "./Storage/Posts/" + folderName;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
@@ -37,7 +37,7 @@ const upload_profile = multer.diskStorage({
   destination: async function (req, file, cb) {
     const user = await User.findById(req.user_id);
     const folderName = "profile_" + user._id;
-    const dir = "../client/public/Profile/" + folderName;
+    const dir = "./Storage/Profiles/" + folderName;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
@@ -56,7 +56,7 @@ const update_file = multer.diskStorage({
   destination: async function (req, file, cb) {
     const post = await Post.findById(req.params.id);
     const folderName = "post_" + post._id;
-    const dir = "../client/public/Posts/" + folderName;
+    const dir = "./Storage/Posts/" + folderName;
 
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
