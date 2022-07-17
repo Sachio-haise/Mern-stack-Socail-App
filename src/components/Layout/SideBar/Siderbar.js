@@ -5,7 +5,7 @@ import { getAuth } from "../../../redux/auth/reducer";
 import { LOGOUT } from "../../../redux/auth/types";
 import { getPosts } from "../../../redux/post/actions";
 import { REMOVE_DATA } from "../../../redux/transfer/types";
-import Post from "../../POST/Post";
+import Post from "../../Responsive/Post";
 import "./Sidebar.css";
 function Siderbar() {
   const [active, setActive] = useState("");
@@ -182,7 +182,7 @@ function Siderbar() {
                               });
                             }}
                             data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"
+                            data-bs-target="#staticBackdroptwo"
                           >
                             {" "}
                             POST
