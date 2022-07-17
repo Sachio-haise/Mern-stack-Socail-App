@@ -43,7 +43,7 @@ function Post() {
       headers: {
         Authorization: `Bearer ${auth.token}`,
         AccessControlAllowOrigin: "*",
-        ContentType: "application/json",
+        "Content-Type": "application/json",
       },
     });
     dispatch({
@@ -73,7 +73,7 @@ function Post() {
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
-            ContentType: "application/json",
+            "Content-Type": "application/json",
           },
         }
       );
@@ -81,13 +81,19 @@ function Post() {
         type: REMOVE_DATA,
       });
     } else {
-      res = await axios.post(`${server_url}/api/create-post`, formData, {
-        headers: {
-          Authorization: `Bearer ${auth.token}`,
-          AccessControlAllowOrigin: "*",
-          ContentType: "application/json",
+      res = await fetch(
+        `${server_url}/api/create-post`,
+        {
+          method: "POST",
+          body: formData,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
     dispatch(getPosts());
     console.log(res.data);

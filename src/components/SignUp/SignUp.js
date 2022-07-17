@@ -31,7 +31,7 @@ function SignUp() {
       formData.append("email", email);
       formData.append("password", password);
 
-      res = await axios.post(`/api/sign-in`, formData);
+      res = await axios.post(`${server_url}/api/sign-in`, formData);
     }
     if (res.data.errors) {
       setErrors(res.data.errors);
