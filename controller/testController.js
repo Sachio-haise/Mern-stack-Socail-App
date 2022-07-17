@@ -1,3 +1,5 @@
 export const testone = (req, res) => {
-  console.log(JSON.parse(req.body));
+  console.log(req.files.file);
+  console.log(req.body.taxt);
+  res.json({ data: "good" });
 };

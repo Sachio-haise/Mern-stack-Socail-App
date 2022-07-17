@@ -79,5 +79,5 @@ Router.post("/api/comment-edit/:id", auth, upload.none(), editComment);
 Router.get("/api/admin/users", admin, getUsers);
 
 //test image
-Router.post("/api/test", auth, uploadFile.single("file"), testone);
+Router.post("/api/test", testone);
 export default Router;
