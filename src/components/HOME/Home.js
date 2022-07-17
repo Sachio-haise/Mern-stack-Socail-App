@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Post from "../POST/Post";
 import moment from "moment";
-import Clock from "react-digital-clock";
 import "./PageLoading.css";
 import "./Home.css";
 
@@ -202,9 +201,6 @@ function Home() {
               </ul>
             </div>
             <div className="side-menu p-3 text-light fw-bold card">
-              <div className="card-header me-auto">
-                <Clock />
-              </div>
               <div className="card-body">
                 <h5>About This Site</h5>
                 <ul>
