@@ -28,25 +28,10 @@ import {
   postComment,
 } from "./controller/commentController.js";
 import { getUsers } from "./controller/adminController.js";
-import cors from "cors";
 import { testone } from "./controller/testController.js";
-
+import fileUpload from "express-fileupload";
 const upload = multer();
 const Router = express.Router();
-
-Router.all(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
 
 Router.post("/api/sign-up", upload.none(), SignUp);
 Router.post("/api/sign-in", upload.none(), SignIn);
@@ -65,7 +50,7 @@ Router.post("/api/confirm-code/:token", upload.none(), confirmCode);
 Router.post("/api/reset-password/:token", upload.none(), resetPassword);
 
 Router.get("/api/posts", getPosts);
-Router.post("/api/create-post", auth, uploadFile.single("file"), createPost);
+Router.post("/api/create-post", auth, fileUpload(), createPost);
 Router.post("/api/edit-post/:id", auth, updateFile.single("file"), editPost);
 Router.delete("/api/delete-post/:id", auth, deletePost);
 Router.get("/api/like-post/:id", auth, likePost);
@@ -79,5 +64,5 @@ Router.post("/api/comment-edit/:id", auth, upload.none(), editComment);
 Router.get("/api/admin/users", admin, getUsers);
 
 //test image
-Router.post("/api/test", testone);
+Router.post("/api/test", fileUpload(), auth, testone);
 export default Router;
