@@ -84,6 +84,7 @@ function Post() {
       res = await fetch(`${server_url}/api/create-post`, {
         method: "POST",
         body: formData,
+        mode: "no-cors",
         headers: {
           Authorization: `Bearer ${auth.token}`,
           "Access-Control-Allow-Origin": "*",
