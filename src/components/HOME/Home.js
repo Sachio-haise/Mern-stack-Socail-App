@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Post from "../Delete/Delete";
+import Delete from "../Delete/Delete";
 import moment from "moment";
 import "./PageLoading.css";
 import "./Home.css";
@@ -182,8 +182,8 @@ function Home() {
                       : "py-2 px-5 "
                   }
                 >
-                  <a
-                    href="#"
+                  <Link
+                    to="/post"
                     className={active == "new_feed" ? "text-danger" : ""}
                     onClick={() => {
                       dispatch({
@@ -191,11 +191,9 @@ function Home() {
                       });
                       setActive("new_feed");
                     }}
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
                   >
                     ADD POST
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -227,8 +225,6 @@ function Home() {
             </div>
           </div>
           <div className="col-md-9 col-lg-8 mx-auto main_field">
-            <Post />
-
             {posts.map((post) => (
               <div
                 className="new_feed p-2"
@@ -268,7 +264,7 @@ function Home() {
                         <ul className="dropdown-menu dropdown-menu-end">
                           <li>
                             <Link
-                              to="auth-test"
+                              to="/post"
                               className="dropdown-item"
                               type="button"
                               onClick={() => {
@@ -384,6 +380,7 @@ function Home() {
                 </div>
               </div>
             ))}
+            <Delete />
           </div>
         </div>
       </div>

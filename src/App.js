@@ -4,7 +4,6 @@ import Home from "./components/HOME/Home";
 import Siderbar from "./components/Layout/SideBar/Siderbar";
 import SignUp from "./components/SignUp/SignUp";
 import EmailVerify from "./components/EmailVerfiy/EmailVerify";
-import Post from "./components/Delete/Delete";
 import Profile from "./components/Profile/Profile";
 import PasswordReset from "./components/Password-reset/PasswordReset,";
 import Verified from "./components/Verified/Verified";
@@ -12,7 +11,7 @@ import { IsAdmin, HasAuth } from "./Middleware/AuthMiddleware";
 import Dashboard from "./components/Admin/Dashboard";
 import Sidebar from "./components/Layout/Admin/Sidebar";
 import UserProfile from "./components/UserProfile/UserProfile";
-import PostAuth from "./components/Post/Post";
+import Post from "./components/Post/Post";
 
 function App() {
   return (
@@ -36,7 +35,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard-profile" element={<Profile />} />
             </Route>
-            <Route path="/auth-test" element={<PostAuth />} />
+            <Route path="/post" element={<Post />} />
           </Routes>
         </Router>
       </>

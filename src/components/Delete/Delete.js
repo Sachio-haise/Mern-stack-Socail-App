@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Post.css";
+import "./Delete.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -55,33 +55,32 @@ function Post() {
   return (
     <div>
       {/* Modal */}
-      {delete_post && (
-        <div
-          className="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex={-1}
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog ">
-            <div className="modal-content ">
-              <div className="modal-header">
-                <h2
-                  className="modal-title text-danger fw-bold "
-                  id="staticBackdropLabel"
-                >
-                  CONFIRM DELETE
-                </h2>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                />
-              </div>
-
+      <div
+        className="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex={-1}
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5
+                className="modal-title text-danger fw-bold"
+                id="staticBackdropLabel"
+              >
+                CONFIRM DELETE
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            {delete_post && (
               <form
                 className="row  py-0"
                 style={{ paddingLeft: ".8rem", paddingRight: ".8rem" }}
@@ -101,34 +100,33 @@ function Post() {
                   />
                 </>
               </form>
-
-              <div className="p-4 ">
-                <button
-                  className="btn btn-sm post-btn btn-delete fw-bold fs-6  fw-bold"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={() => deletePost()}
-                  style={{ backgroundColor: "transparent" }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="btn btn-delete-cancel fw-bold me-4"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={() => {
-                    dispatch({
-                      type: REMOVE_DATA,
-                    });
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
+            )}
+            <div className="p-4 ">
+              <button
+                className="btn btn-sm post-btn btn-delete fw-bold fs-6  fw-bold"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={() => deletePost()}
+                style={{ backgroundColor: "transparent" }}
+              >
+                Delete
+              </button>
+              <button
+                className="btn btn-delete-cancel fw-bold me-4"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={() => {
+                  dispatch({
+                    type: REMOVE_DATA,
+                  });
+                }}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
