@@ -29,9 +29,12 @@ import {
 } from "./controller/commentController.js";
 import { getUsers } from "./controller/adminController.js";
 import { testone } from "./controller/testController.js";
+import cors from "cors";
 const upload = multer();
 const Router = express.Router();
 
+Router.all(cors());
+Router.apply(cors());
 Router.post("/api/sign-up", upload.none(), SignUp);
 Router.post("/api/sign-in", upload.none(), SignIn);
 Router.get("/api/verify/:token", verify);
