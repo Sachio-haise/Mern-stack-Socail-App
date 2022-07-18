@@ -10,6 +10,7 @@ import Verified from "./components/Verified/Verified";
 import { IsAdmin, HasAuth } from "./Middleware/AuthMiddleware";
 import Dashboard from "./components/Admin/Dashboard";
 import UserProfile from "./components/UserProfile/UserProfile";
+import CreatePost from "./components/CreatePost/CreatePost";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard-profile" element={<Profile />} />
             </Route>
+            <Route path="/post" element={<CreatePost />} />
           </Routes>
         </Router>
       </>
