@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Post.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/post/actions";
 import { REMOVE_DATA } from "../../redux/transfer/types";
 import { server_url } from "../../config";
-
-function Post() {
+import "./Post.css";
+function PostAuth() {
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.auth);
   const posts = useSelector((state) => state.post.posts);
@@ -97,156 +97,76 @@ function Post() {
   };
 
   return (
-    <div>
-      {/* Modal */}
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabIndex={-1}
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog ">
-          <div className="modal-content ">
-            <div className="modal-header">
-              <h2
-                className="modal-title text-danger fw-bold "
-                id="staticBackdropLabel"
+    <div className="container-fluid mx-auto mt-5" style={{ width: "600px" }}>
+      <form className="sign-up  mx-auto  p-4" onSubmit={() => createPost()}>
+        <img
+          src="/rsz_logosample_bytailorbrands-removebg-preview-removebg-preview.png"
+          width="30%"
+          className="d-block mx-auto mb-4"
+        />
+        <h2 className="text-center text-danger fw-bold mb-3">
+          {edit_id ? "EDIT POST" : delete_id ? "CONFIRM DELETE" : "CREATE POST"}
+        </h2>
+
+        <TextareaAutosize
+          className="text-field p-3 fw-bold"
+          placeholder={
+            auth?.user
+              ? "What on your mind, " + auth.user.name + " ?"
+              : "What on your mind ?"
+          }
+          onChange={(e) => setPost(e.target.value)}
+          value={post}
+          autoFocus
+        />
+        <div className="my-3">
+          <label
+            className="btn  btn-sm post-btn fw-bold fs-6 mt-3 fw-bold"
+            htmlFor="upload-img-one"
+          >
+            Upload <i className="fa-solid fa-upload"></i>
+          </label>
+          <input
+            type="file"
+            className="d-none"
+            id="upload-img-one"
+            onChange={(e) => {
+              setImage(URL.createObjectURL(e.target.files[0]));
+              setFile(e.target.files[0]);
+            }}
+          />
+          <img
+            className={
+              image
+                ? "d-block mt-3 img-fluid border border-danger border-2 rounded"
+                : "d-none"
+            }
+            src={image}
+            width={"200px"}
+            height={"200px"}
+          />
+        </div>
+
+        <div className=" row">
+          <button className="btn fw-bold me-3 " disabled={loading}>
+            {" "}
+            {loading && (
+              <div
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
               >
-                {edit_id
-                  ? "EDIT POST"
-                  : delete_id
-                  ? "CONFIRM DELETE"
-                  : "CREATE POST"}
-              </h2>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
-
-            <form
-              className="row  py-0"
-              style={{ paddingLeft: ".8rem", paddingRight: ".8rem" }}
-            >
-              {delete_id ? (
-                <>
-                  <p className="card-text mt-3 text-light">
-                    Are you sure you want to{" "}
-                    <span className="text-danger fw-bold">delete</span> this
-                    Post?
-                  </p>
-                  <p className="fw-bold text-light">{delete_post.text}</p>
-                  <img
-                    className={delete_post.file ? "" : "d-none"}
-                    src={delete_post.file}
-                    width={"300px"}
-                    height={"300px"}
-                  />
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <TextareaAutosize
-                    className="text-field p-3 fw-bold"
-                    placeholder={
-                      auth?.user
-                        ? "What on your mind, " + auth.user.name + " ?"
-                        : "What on your mind ?"
-                    }
-                    onChange={(e) => setPost(e.target.value)}
-                    value={post}
-                    autoFocus
-                  />
-                  <div>
-                    <label
-                      className="btn  btn-sm post-btn fw-bold fs-6 mt-3 fw-bold"
-                      htmlFor="upload-img"
-                    >
-                      Upload <i className="fa-solid fa-upload"></i>
-                    </label>
-                    <input
-                      type="file"
-                      className="d-none"
-                      id="upload-img"
-                      onChange={(e) => {
-                        setImage(URL.createObjectURL(e.target.files[0]));
-                        setFile(e.target.files[0]);
-                      }}
-                    />
-                    <img
-                      className={
-                        image
-                          ? "d-block mt-3 img-fluid  border border-danger border-2 rounded"
-                          : "d-none"
-                      }
-                      src={image}
-                      width={"200px"}
-                      height={"200px"}
-                    />
-                  </div>
-                </>
-              )}
-            </form>
-
-            {delete_id ? (
-              <div className="p-4 ">
-                <button
-                  className="btn btn-sm post-btn btn-delete fw-bold fs-6  fw-bold"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={() => deletePost()}
-                  style={{ backgroundColor: "transparent" }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="btn btn-delete-cancel fw-bold me-4"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={() => {
-                    dispatch({
-                      type: REMOVE_DATA,
-                    });
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <div className="p-4 row ">
-                <button
-                  className="btn btn-sm post-btn fw-bold fs-5  fw-bold"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  disabled={!post}
-                  onClick={() => createPost()}
-                >
-                  {edit_post ? "Update" : "Post"}
-                </button>
-                <button
-                  className="btn text-light fw-bold me-3"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={() => {
-                    dispatch({
-                      type: REMOVE_DATA,
-                    });
-                  }}
-                >
-                  Cancel
-                </button>
+                <span className="visually-hidden">Loading...</span>
               </div>
             )}
-          </div>
+            {edit_post ? "Update" : "Post"}
+          </button>
+          <Link to="/" className="btn text-light fw-bold mt-2 me-3">
+            Cancel
+          </Link>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
 
-export default Post;
+export default PostAuth;

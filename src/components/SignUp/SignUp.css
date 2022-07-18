@@ -34,3 +34,9 @@
 .sign-up button {
   background-color: #363636;
 }
+
+@media only screen and (max-width: 753px) {
+  .sign-up {
+    width: 400px;
+  }
+}

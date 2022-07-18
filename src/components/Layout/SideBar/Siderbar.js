@@ -5,7 +5,6 @@ import { getAuth } from "../../../redux/auth/reducer";
 import { LOGOUT } from "../../../redux/auth/types";
 import { getPosts } from "../../../redux/post/actions";
 import { REMOVE_DATA } from "../../../redux/transfer/types";
-import Post from "../../Responsive/Post";
 import "./Sidebar.css";
 function Siderbar() {
   const [active, setActive] = useState("");
@@ -94,7 +93,7 @@ function Siderbar() {
                           <li>
                             <Link
                               to="/"
-                              onClick={() => setActive("profile")}
+                              onClick={() => setActive("home")}
                               className={
                                 active == "profile"
                                   ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
@@ -108,7 +107,7 @@ function Siderbar() {
                           <li>
                             <Link
                               to="/"
-                              onClick={() => setActive("home")}
+                              onClick={() => setActive("profile")}
                               className={
                                 active == "home"
                                   ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
@@ -127,11 +126,13 @@ function Siderbar() {
                           <li>
                             <Link
                               to="/dashboard"
-                              onClick={() => setActive("dashboard")}
+                              onClick={() => {
+                                setActive("home");
+                              }}
                               className={
                                 active == "dashboard"
                                   ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
-                                  : "nav-link offcanva-link px-4 py-3 align-middle"
+                                  : "nav-link offcanva-link px-4 py-3 align-middle "
                               }
                             >
                               Dashboard
@@ -141,7 +142,7 @@ function Siderbar() {
                           <li>
                             <Link
                               to="/"
-                              onClick={() => setActive("home")}
+                              onClick={() => setActive("dashboard")}
                               className={
                                 active == "home"
                                   ? "nav-link offcanva-link px-4 py-3 align-middle text-danger"
@@ -189,13 +190,21 @@ function Siderbar() {
                           </a>
                         </li>
                       </ul>
-                    </li>{" "}
-                    <Post />
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="nav-link offcanva-link px-4 align-middle py-3"
+                        onClick={() => logout()}
+                      >
+                        LOGOUT
+                      </a>
+                    </li>
                   </>
                 ) : (
                   <li>
                     <Link
-                      to="/"
+                      to="/auth"
                       onClick={() => setActive("sign_up")}
                       className={
                         active == "sign_up"

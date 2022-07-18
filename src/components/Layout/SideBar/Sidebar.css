@@ -122,6 +122,8 @@ input.active.focus {
 
 .nav-link-child:hover,
 .nav-link:hover,
+.nav-link:active,
+.nav-link.active,
 .navbar-brand:hover {
   color: red;
 }

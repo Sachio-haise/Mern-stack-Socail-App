@@ -59,8 +59,8 @@ function SignUp() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-6 offset-3 mt-5">
-          <form className="sign-up mx-auto p-4" onSubmit={auth}>
+        <div className="col-md-6 offset-3 mt-5">
+          <form className="sign-up  p-4" onSubmit={auth}>
             <img
               src="/rsz_logosample_bytailorbrands-removebg-preview-removebg-preview.png"
               width="30%"

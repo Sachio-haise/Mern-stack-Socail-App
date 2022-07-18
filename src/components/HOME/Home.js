@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Post from "../POST/Post";
+import Post from "../Delete/Delete";
 import moment from "moment";
 import "./PageLoading.css";
 import "./Home.css";
@@ -196,7 +196,6 @@ function Home() {
                   >
                     ADD POST
                   </a>
-                  <Post />
                 </li>
               </ul>
             </div>
@@ -228,6 +227,8 @@ function Home() {
             </div>
           </div>
           <div className="col-md-9 col-lg-8 mx-auto main_field">
+            <Post />
+
             {posts.map((post) => (
               <div
                 className="new_feed p-2"
@@ -266,17 +267,16 @@ function Home() {
                         </button>
                         <ul className="dropdown-menu dropdown-menu-end">
                           <li>
-                            <button
+                            <Link
+                              to="auth-test"
                               className="dropdown-item"
                               type="button"
                               onClick={() => {
                                 trans_ID(post._id);
                               }}
-                              data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop"
                             >
                               Edit
-                            </button>
+                            </Link>
                           </li>
                           <li>
                             <button
