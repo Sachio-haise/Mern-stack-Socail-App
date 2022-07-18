@@ -11,8 +11,6 @@ const app = express();
 //middleWare
 app.use(cors());
 app.use("/images", express.static("Storage"));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 //dbConnection
 const dbUrl =
