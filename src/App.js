@@ -11,7 +11,6 @@ import { IsAdmin, HasAuth } from "./Middleware/AuthMiddleware";
 import Dashboard from "./components/Admin/Dashboard";
 
 import UserProfile from "./components/UserProfile/UserProfile";
-import Post from "./components/Post/Post";
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard-profile" element={<Profile />} />
             </Route>
-            <Route path="/post" element={<Post />} />
           </Routes>
         </Router>
       </>
