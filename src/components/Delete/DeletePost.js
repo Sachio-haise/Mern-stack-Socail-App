@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Delete.css";
+import "./DeletePost.css";
 import TextareaAutosize from "react-textarea-autosize";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +9,7 @@ import { getPosts } from "../../redux/post/actions";
 import { REMOVE_DATA } from "../../redux/transfer/types";
 import { server_url } from "../../config";
 
-function Post() {
+function DeletePost() {
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
@@ -131,4 +131,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default DeletePost;

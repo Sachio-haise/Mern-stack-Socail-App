@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Delete from "../Delete/Delete";
+import DeletePost from "../Delete/DeletePost";
 import moment from "moment";
 import "./PageLoading.css";
 import "./Home.css";
@@ -13,7 +13,7 @@ import {
   TRANS_USER_DATA,
 } from "../../redux/transfer/types";
 import axios from "axios";
-import { getPosts, getPostsOnly } from "../../redux/post/actions";
+import { getPostsOnly } from "../../redux/post/actions";
 import { LIKE_PENDING } from "../../redux/post/types";
 import Comment from "../Comments/Comment";
 import { server_url } from "../../config";
@@ -380,7 +380,7 @@ function Home() {
                 </div>
               </div>
             ))}
-            <Delete />
+            <DeletePost />
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import { getPosts } from "../../redux/post/actions";
 import { REMOVE_DATA } from "../../redux/transfer/types";
 import { server_url } from "../../config";
 import "./Post.css";
-function PostAuth() {
+function Post() {
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
   const [image, setImage] = useState("");
@@ -169,4 +169,4 @@ function PostAuth() {
   );
 }
 
-export default PostAuth;
+export default Post;

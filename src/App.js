@@ -9,7 +9,7 @@ import PasswordReset from "./components/Password-reset/PasswordReset,";
 import Verified from "./components/Verified/Verified";
 import { IsAdmin, HasAuth } from "./Middleware/AuthMiddleware";
 import Dashboard from "./components/Admin/Dashboard";
-import Sidebar from "./components/Layout/Admin/Sidebar";
+
 import UserProfile from "./components/UserProfile/UserProfile";
 import Post from "./components/Post/Post";
 
