@@ -19,8 +19,6 @@ export const HasAuth = () => {
   return auth ? <Navigate to="/" /> : <Outlet />;
 };
 
-auth = "";
-
 export const IsAdmin = () => {
   return (
     <div className="container-fluid">

@@ -183,7 +183,7 @@ function Home() {
                   }
                 >
                   <Link
-                    to="/post"
+                    to="/create-post"
                     className={active == "new_feed" ? "text-danger" : ""}
                     onClick={() => {
                       dispatch({
@@ -264,7 +264,7 @@ function Home() {
                         <ul className="dropdown-menu dropdown-menu-end">
                           <li>
                             <Link
-                              to="/post"
+                              to="/create-post"
                               className="dropdown-item"
                               type="button"
                               onClick={() => {

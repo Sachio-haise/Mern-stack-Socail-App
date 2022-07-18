@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../redux/post/actions";
 import { REMOVE_DATA } from "../../redux/transfer/types";
 import { server_url } from "../../config";
+import "./CreatePost.css";
 function CreatePost() {
   const [post, setPost] = useState("");
   const [file, setFile] = useState("");
@@ -16,6 +17,7 @@ function CreatePost() {
   const posts = useSelector((state) => state.post.posts);
   const edit_id = useSelector((state) => state.transfer.post_id);
   const delete_id = useSelector((state) => state.transfer.delete_id);
+  const navigate = useNavigate();
   var edit_post;
   var delete_post;
   if (edit_id) {
@@ -33,7 +35,9 @@ function CreatePost() {
     }
   }, [edit_post]);
 
-  const createPost = async () => {
+  const createPost = async (e) => {
+    e.preventDefault();
+
     dispatch({
       type: REMOVE_DATA,
     });
@@ -46,7 +50,6 @@ function CreatePost() {
     formData.append("user_id", auth.user._id);
     formData.append("file", file);
     var res;
-
     if (edit_post) {
       console.log(Date.now());
       res = await axios.post(
@@ -63,23 +66,28 @@ function CreatePost() {
         type: REMOVE_DATA,
       });
     } else {
-      res = await axios.post(`${server_url}/api/create-post`, formData, {
+      await axios.post(`${server_url}/api/create-post`, formData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
           "Content-Type": "multipart/form-data",
         },
       });
-    }
-    dispatch(getPosts());
-    console.log(res.data);
 
+      dispatch({
+        type: REMOVE_DATA,
+      });
+    }
+    console.log("leee");
+
+    await dispatch(getPosts());
+    navigate("/");
     setFile("");
     setImage("");
     setPost("");
   };
   return (
     <div className="container-fluid mx-auto mt-5" style={{ width: "600px" }}>
-      <form className="sign-up  mx-auto  p-4" onSubmit={() => createPost()}>
+      <form className="sign-up  mx-auto  p-4" onSubmit={(e) => createPost(e)}>
         <img
           src="/rsz_logosample_bytailorbrands-removebg-preview-removebg-preview.png"
           width="30%"

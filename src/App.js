@@ -34,7 +34,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard-profile" element={<Profile />} />
             </Route>
-            <Route path="/post" element={<CreatePost />} />
+            <Route path="/create-post" element={<CreatePost />} />
           </Routes>
         </Router>
       </>
