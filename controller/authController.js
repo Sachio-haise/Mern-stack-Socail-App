@@ -256,7 +256,7 @@ export const verify = async (req, res) => {
 export const updateBio = async (req, res) => {
   const { bio } = req.body;
   var user;
-  const path = "https://mern-social-app-2022.herokuapp.com/images/Profiles/";
+  const path = "https://mern-socail-app2022.herokuapp.com/images/Profiles/";
 
   if (req.file) {
     const profile =

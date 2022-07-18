@@ -18,7 +18,7 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const { text, user_id } = req.body;
-  const path = "https://mern-social-app-2022.herokuapp.com/images/Posts/";
+  const path = "https://mern-socail-app2022.herokuapp.com/images/Posts/";
   var post;
   if (req.file) {
     const folderName = "post_" + req.post_id;
@@ -60,7 +60,7 @@ export const createPost = async (req, res) => {
 export const editPost = async (req, res) => {
   const { text, user_id, file } = req.body;
   var post;
-  const path = "https://mern-social-app-2022.herokuapp.com/images/Posts/";
+  const path = "https://mern-socail-app2022.herokuapp.com/images/Posts/";
   if (file != "") {
     const folderName = "post_" + req.params.id;
     post = await Post.findByIdAndUpdate(
